@@ -1,0 +1,23 @@
+
+{% extends '::base.html.twig' %}
+{% block body %}
+{% if app.user is not empty %} 
+    <ul>
+        <li>
+            <a href="{{ path('nasd_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+{% endif %} 
+    {{ grid(data) }}
+{% if app.user is not empty %} 
+    <ul>
+        <li>
+            <a href="{{ path('nasd_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+{% endif %}
+{% endblock %}

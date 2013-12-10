@@ -1,0 +1,12 @@
+tab:
+    resource: "@NasdTabBundle/Controller/TabellageneraleController.php"
+    type:     annotation
+    
+default:
+    resource: "@NasdTabBundle/Controller/DefaultController.php"
+    type:     annotation
+    
+user:
+    resource: "@NasdTabBundle/Controller/SecuretyController.php"
+    type:     annotation
+    

@@ -1,0 +1,53 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+
+<style type="text/css">
+#contentajax {
+    background-color: transparent;
+    border: 2px solid;
+    height: 488px;
+    left: 200px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 2px;
+    position: relative;
+    top: -482px;
+    width: 424px;
+    z-index: 999;
+}
+</style>
+<h1>Tabellagenerale creation</h1>
+
+<form class="jqtransform" action="{{ path('nasd_create') }}" method="post" {{ form_enctype(form) }} novalidate>
+    <p>
+        <button type="submit">Create</button>
+    </p>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('nasd') }}">
+            Back to the list
+        </a> 
+        <a class="various fancybox.ajax" href="{{ path('findfile') }}">select file</a>
+    </li>
+</ul>
+
+    <div id="contentajax" style="display: none;">
+    </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#nasd_tabbundle_tabellageneraletype_pathfile').click(function(){
+            $('#contentajax').toggle('slow', function() {
+                $(this).load('{{ path('findfile') }}');
+            });
+        });
+    $("select, input:checkbox, input:radio, input:file, input").uniform();
+    });
+</script>
+{% endblock %}
+    

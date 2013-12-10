@@ -1,0 +1,69 @@
+
+<style type="text/css">
+.selectedIMG {
+    background-color: red;
+    border: 2px solid;
+    height: 140% !important;
+    position: relative;
+    width: 140% !important;
+    z-index: 9999;
+            
+}
+.noneselect {
+    background-color: transparent;
+    border: 0px solid;
+    height: 50px;
+}
+</style>
+        
+<a id="close_box" href="javascript:;">close</a>
+<label for="search">Search</label>
+<input type="text" id="search" name="searchword" value="" />
+<div id="id_of_page_container">
+    <ul class="content records_list" style="list-style: none outside none;" >
+        {% for entity in entities %}
+        <li class="listImage" style="float: left; width: 95%; height: 35px; margin-bottom: 3px;">
+                <input class="img_value" type="hidden" value="{{ entity.getRelativePathname }}" />
+                <div class="product">{{ entity.getRelativePathname }}</div>
+                <div style="float: right; text-align: right; width: 6%;padding-right: 5px;">
+                    <a class="preview-image" rel="fancybox-button gallery" href="uploads/{{ entity.getRelativePathname }}" title="{{ entity.getRelativePathname }}">view</a>
+                </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<script type='text/javascript'>
+    $(document).ready(function(){
+        $('.listImage').click(function () {
+            var valore = $(this).children('.images').attr('src');
+            $('#nasd_tabbundle_tabellageneraletype_pathfile').val(valore);
+        });
+        
+        $('input#search').quicksearch('UL.records_list LI');
+        var holdclick = false;
+        $('.records_list li').click(function(){
+            $(this).children('img').addClass('selectedIMG')
+            $('#nasd_tabbundle_tabellageneraletype_pathfile').val($(this).children('.img_value').val());
+            if(holdclick)
+                holdclick.removeClass('selectedIMG');
+            holdclick = $(this).children('img');
+        });
+        $('#close_box').click(function(){
+            $('#contentajax').hide();
+        });
+        /*
+        $('#id_of_page_container').pajinate({
+            items_per_page : 30,
+            start_page : 5
+        });
+           */ 
+        $(".preview-image").fancybox({
+            helpers : {
+                    title : {
+                            type : 'inside'
+                    },
+                    buttons : {}
+            }
+        });
+    });
+</script>

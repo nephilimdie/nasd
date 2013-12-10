@@ -1,0 +1,120 @@
+/* 
+    Document   : main
+    Created on : 29-gen-2012, 13.13.22
+    Author     : Stefano Bassetto <stefano.bassetto@gmail.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input
+{ margin: 0; padding: 0; }
+
+
+a img,:link img,:visited img { border:none; }
+
+A:LINK { /* color : #db9815 ; text-decoration: none; margin-bottom: 0.1em;}
+A:VISITED { color : #db9815; text-decoration: none; }
+A:HOVER { color : #db9815; text-decoration : underline; }
+A:ACTIVE { color : #db9815; text-decoration: none; */ }
+
+BODY {
+  	margin: 0;
+  	font-family: Arial, Verdana, sans-serif;
+  	font-size: 13px;
+}
+/*
+P {
+  	font-family: Arial, Verdana, sans-serif;
+  	font-size: 13px;
+  	background-color:transparent;
+}*/
+
+div#banner{
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+
+.bannerize {
+    float: left;
+    font-size: 25pt;
+    font-weight: bold;
+    width: 100%;
+}
+.content {
+    float: left;
+    margin-bottom: 2%;
+    margin-left: 2%;
+    margin-top: 2%;
+    width: 95%;
+}
+UL{
+    list-style: none;
+}
+li {
+    float: left;
+    margin-right: 10px;
+}
+
+label {
+    float: left;
+    width: 155px;
+}
+
+H1 {
+    float: left;
+    font-size: 15pt;
+    width: 100%;
+}
+#nasd_tabbundle_tabellageneraletype {
+    
+}
+#nasd_tabbundle_tabellageneraletype div {
+    float: left;
+    margin-top: 4px;
+    width: 100%;
+}
+.records_list {
+    margin-top: 5px;
+    float: left;
+    width: 100%;
+}
+.listImage {
+    border: 1px solid;
+    cursor: pointer;
+    float: left;
+    height: 100px;
+    margin-right: 2px;
+    padding: 1px;
+    width: 100px;
+}
+.listImage img {
+    width: 100%;
+    float: left;
+}
+.listImage div {
+    width: 90%;
+    float: left;
+}
+
+.grid {
+    float: left;
+    width: 100%;
+    margin: 1% 0;
+}
+form#loginform {
+    
+}
+form#loginform input {
+    float: none !important;
+}
+form#loginform label {
+    float: none !important;
+}
+
+.foot {
+    float: left;
+    font-size: 80%;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+}

@@ -1,0 +1,2 @@
+Nasd:
+    resource: "@NasdTabBundle/Resources/config/routing.yml"

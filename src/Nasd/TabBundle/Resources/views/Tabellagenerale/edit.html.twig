@@ -1,0 +1,48 @@
+
+<style type="text/css">
+#contentajax {
+    background-color: transparent;
+    border: 2px solid;
+    height: 488px;
+    left: 300px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 2px;
+    position: relative;
+    top: -400px;
+    width: 424px;
+    z-index: 99999;
+}
+</style>
+<h1>Tabellagenerale edit</h1>
+
+<form id="edit_form" action="{{ path('tabellagenerale_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form) }}
+    <p>
+        <button class="edit_button fancybox.ajax" type="submit">Edit</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <form action="{{ path('tabellagenerale_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+
+    <div id="contentajax" style="display: none;">
+    </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#nasd_tabbundle_tabellageneraletype_pathfile').click(function(){
+            $('#contentajax').toggle('slow', function() {
+                $(this).load('{{ path('findfile') }}');
+            });
+        });
+    $("select, input:checkbox, input:radio, input:file, input").uniform();
+        
+            $('#edit_form').ajaxForm(); 
+    });
+</script>

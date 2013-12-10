@@ -1,0 +1,150 @@
+div.grid table {
+    margin-bottom: 5px;
+    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    border-color: #B7B7B7;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+div.grid table td {
+    font: normal 11px/15px Arial;
+    border: 1px solid #B7B7B7;
+    padding: 2px;
+    vertical-align: bottom;
+}
+
+div.grid table td.last {
+    border-width: 1px 1px 0 0;
+}
+
+div.grid table td input[type=checkbox] {
+    position: relative;
+    top: 2px;
+    margin: 0;
+}
+
+div.grid table td.align-center, div.grid table th.align-center {
+    text-align: center;
+}
+
+div.grid table td.align-right, div.grid table th.align-right {
+    text-align: right;
+}
+
+div.grid table th {
+    background-color: #edf3fa;
+    text-align: left;
+    border-color: #B7B7B7;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    padding: 2px;
+    font-size: 11px;
+    vertical-align: top;
+}
+
+div.grid table th a {
+    color: #000000;
+    font-size: 11pt;
+    font-variant: small-caps;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+}
+
+div.grid table th.selected a {
+    color: maroon;
+}
+
+div.grid table tr:hover {
+    background-color: #f0f0f0;
+}
+
+div.grid table th.title {
+    padding-left: 2px;
+    padding-right: 2px;
+    background: -moz-linear-gradient(top, #F9F9F9, #eaeaea) repeat scroll 0 0 transparent;
+    background: -webkit-linear-gradient(top, #F9F9F9, #eaeaea) repeat scroll 0 0 transparent;
+    background: -o-linear-gradient(top, #F9F9F9, #eaeaea) repeat scroll 0 0 transparent;
+    background: linear-gradient(top, #F9F9F9, #eaeaea) repeat scroll 0 0 transparent;
+    border-left-color: #EEE;
+    border-right-color: #D0D0D0;
+    vertical-align: middle;
+}
+
+div.grid table input[type=text] {
+    font-size: 11px;
+    height: 18px;
+    -moz-box-shadow: none;
+    padding: 1px;
+    margin: 0;
+    width: 96%;
+}
+
+div.grid table input[disabled="disabled"] {
+    background-color: #e5e5e5;
+    -moz-box-shadow: none;
+    margin: 0;
+}
+
+div.grid table select {
+    font-size: 11px;
+    height: 18px;
+    -moz-box-shadow: none;
+    margin: 0;
+    width: 100%;
+}
+
+div.grid table div.range-column-filter input.first-filter {
+    margin-bottom: 2px !important;
+}
+
+div.grid table img {
+    margin: 1px 1px 0;
+}
+
+/*cp tables */
+div.grid table th div.sort_up {
+    background: transparent url(/images/admin/sort_up.gif) no-repeat bottom left;
+    height: 10px;
+    width: 20px;
+    float: right;
+    padding-top: 4px;
+}
+
+div.grid table th div.sort_down {
+    background: transparent url(/images/admin/sort_down.gif) no-repeat bottom left;
+    height: 10px;
+    width: 20px;
+    float: right;
+    padding-top: 4px;
+}
+
+div.grid div.mass-actions {
+    margin-bottom: 2px;
+    overflow: hidden;
+}
+
+div.grid div.mass-actions input {
+    border-left: none;
+    border-radius: 0 3px 0 0;
+    height: 18px;
+}
+
+div.grid div.mass-actions select {
+    border-right: none;
+}
+
+div.grid div.pager .prev{
+    border-radius: 3px 0 0 3px;
+    border-right: none;
+    height: 18px;
+}
+
+div.grid div.pager .next{
+    border-left: none;
+    border-radius: 0  3px 3px 0;
+    height: 18px;
+}

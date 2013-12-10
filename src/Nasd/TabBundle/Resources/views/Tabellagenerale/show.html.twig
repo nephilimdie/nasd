@@ -1,0 +1,97 @@
+<h1>Tabellagenerale - {{ entity.InventaryNumber }} - {{ entity.SubjectIconography }}</h1>
+
+<style type="text/css">
+    TABLE.record_properties {
+        
+    }
+    TABLE.record_properties TR {
+        float: left;
+    }
+    TABLE.record_properties TR.image{
+        width: 400px;
+        float: left;
+    }
+    TABLE.record_properties TR.info {
+        width: 200px;
+        float: left;
+    }
+    TABLE.record_properties TR.sub_info {
+        width: 100%;
+        float: left;
+    }
+    TABLE.record_properties TH {
+        float: left;
+        
+    }
+    TABLE.record_properties TD {
+        float: left;
+        width: 100%;
+        margin-bottom: 4px;
+    }
+    TABLE.record_properties TD IMG {
+        float: left;
+        width: 390px;
+    }
+</style>
+<table class="record_properties">
+    <tbody>
+        <tr class="image">
+            <td>
+                <img src="uploads/{{ entity.pathfile }}" class="images" alt="image" />
+            </td>
+        </tr>
+        <tr class="info">
+            <th>Inventarynumber</th>
+            <td>{{ entity.InventaryNumber }}</td>
+            <th>Slab</th>
+            <td>{{ entity.Slab }}</td>
+            <th>Subjecticonography</th>
+            <td>{{ entity.SubjectIconography }}</td>
+            <th>King</th>
+            <td>{{ entity.King }}</td>
+            <th>Site</th>
+            <td>{{ entity.Site }}</td>
+            <th>Palace</th>
+            <td>{{ entity.Palace }}</td>
+            <th>Roomcourt</th>
+            <td>{{ entity.RoomCourt }}</td>
+            <th>Wall</th>
+            <td>{{ entity.Wall }}</td>
+        </tr>
+        <tr class="sub_info">
+            <th COLSPAN=2>Inscription</th>
+            <td COLSPAN=2>{{ entity.Inscription }}</td>
+        </tr>
+        <tr class="sub_info">
+            <th COLSPAN=2>Museumcollection</th>
+            <td COLSPAN=2>{{ entity.MuseumCollection }}</td>
+        </tr>
+        <tr class="sub_info">
+            <th COLSPAN=2>City</th>
+            <td COLSPAN=2>{{ entity.City }}</td>
+        </tr>
+        <tr class="sub_info">
+            <th COLSPAN=2>Images</th>
+            <td COLSPAN=2>{{ entity.Images }}</td>
+        </tr>
+        <tr class="sub_info">
+            <th COLSPAN=2>Bibliography</th>
+            <td COLSPAN=2>{{ entity.Bibliography }}</td>
+        </tr>
+    </tbody>
+</table>
+{% if app.user is not empty %} 
+<ul class="record_actions">
+    <li>
+        <a class="edit_fancy fancybox.ajax" href="{{ path('tabellagenerale_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('tabellagenerale_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endif %}

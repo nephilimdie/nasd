@@ -1,0 +1,69 @@
+<h1>Tabellagenerale list</h1>
+
+<table ng-table="tableParams" show-filter="true" class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Inventarynumber</th>
+            <th>Slab</th>
+            <th>Subjecticonography</th>
+            <th>King</th>
+            <th>Site</th>
+            <th>Palace</th>
+            <th>Roomcourt</th>
+            <th>Wall</th>
+            <th>Inscription</th>
+            <th>Museumcollection</th>
+            <th>City</th>
+            <th>Images</th>
+            <th>Bibliography</th>
+            <th>Pathfile</th>
+            <th>Slug</th>
+            <th>Created</th>
+            <th>Updated</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('tabellagenerale_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.InventaryNumber }}</td>
+            <td>{{ entity.Slab }}</td>
+            <td>{{ entity.SubjectIconography }}</td>
+            <td>{{ entity.King }}</td>
+            <td>{{ entity.Site }}</td>
+            <td>{{ entity.Palace }}</td>
+            <td>{{ entity.RoomCourt }}</td>
+            <td>{{ entity.Wall }}</td>
+            <td>{{ entity.Inscription }}</td>
+            <td>{{ entity.MuseumCollection }}</td>
+            <td>{{ entity.City }}</td>
+            <td>{{ entity.Images }}</td>
+            <td>{{ entity.Bibliography }}</td>
+            <td>{{ entity.pathfile }}</td>
+            <td>{{ entity.slug }}</td>
+            <td>{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif%}</td>
+            <td>{% if entity.updated %}{{ entity.updated|date('Y-m-d H:i:s') }}{% endif%}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('tabellagenerale_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('tabellagenerale_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('tabellagenerale_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>
