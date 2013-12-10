@@ -1,7 +1,8 @@
-/nbproject/private/
+/nbproject/
 /vendor/
 /app/cache/
 /app/logs/
 /app/config/parameters.yml
 /web/bundles/
 /src/Acme/
+
