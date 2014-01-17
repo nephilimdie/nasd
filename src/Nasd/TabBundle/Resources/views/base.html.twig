@@ -1,0 +1,151 @@
+{% from 'MopaBootstrapBundle::flash.html.twig' import session_flash, flash, advanced_flash  %}
+
+<!DOCTYPE html>
+
+{% block html_tag %}
+<html lang="en" ng-app="NasdApp">
+{% endblock html_tag %}
+
+{% block head %}
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block head_style %}
+    {# Override this block to add your own files! #}
+    {% stylesheets
+        '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
+
+        '@NasdTabBundle/Resources/public/less/ng-table.less'
+    %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+    {% endblock head_style %}
+
+        
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    {% block head_script %}
+    {% endblock head_script %}
+
+    <title>{#{% block title %}#}Kdig Project .2{#{% endblock title %}#}</title>
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    {% block head_bottom %}
+    {% endblock head_bottom %}
+</head>
+{% endblock head %}
+
+{% block body_tag %}
+<body data-spy="scroll">
+{% endblock body_tag %}
+
+{% block body_start %}
+{% endblock body_start %}
+
+{% block navbar %}
+{% embed '@MopaBootstrap/Navbar/navbar.html.twig' with { fixedTop: false, staticTop: false, inverse: false } %}
+    {% block toggle %}
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse" >
+    <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+
+    {% endblock %}
+    {% block brand %}
+        <a class="navbar-brand" href="{{ path('default_index') }}">KdigProject</a>
+    {% endblock brand %}
+
+    {% block menu %}
+        {{ mopa_bootstrap_menu('main', {'automenu': 'navbar', 'pull-left': true}) }}
+        {{ mopa_bootstrap_menu('usermenu', {'automenu': 'navbar', 'pull-right': true}) }}
+    {% endblock %}
+{% endembed %}
+{% endblock navbar %}
+            
+{% block body %}
+    {% block container %}
+<div class="container">
+    <div class="row">
+        {% block header %}
+        {% endblock header %}
+
+        {% block flashes %}
+            {% if app.session.flashbag.peekAll|length > 0 %}
+            <div class="row">
+                <div class="col-md-12">
+                {{ session_flash() }}
+                </div>
+            </div>
+            {% endif %}
+        {% endblock flashes %}
+            
+        {% block content_row %}
+        <div class="content col-md-12">
+            <div class="row" ng-view>
+                {% block content %}
+                <div class="col-md-12 center">
+                    {% block page_header %}
+                    <div class="page-header col-md-12">
+                          <h5>{% block title %}NASD{% endblock title %}</h5>
+                    </div>
+                    {% endblock page_header %}
+                    
+                    {% block content_content %}
+                        <div class="col-md-12" ng-controller="mainCtrl"></div>
+                    {% endblock content_content %}
+                </div>
+                {% endblock content %}
+            </div>
+        </div>
+        {% endblock content_row %}
+        
+    </div> <!-- end container -->
+    </div>
+    {% endblock container %}
+    {% block footer %}
+    <footer class="footer">
+        <div class="row">
+            <div class="right-menu col-md-12">
+                <p>&copy; <a href="mailto:stefano.bassetto.nep@gmail.com" target="_blank">Stefano Bassetto</a> 2013</p>
+            </div>
+        </div>
+    </footer>
+    {% endblock footer %}
+    {% block foot_script %}
+    
+    {% javascripts
+        '@KdigTemplateBundle/Resources/public/js/lib/jquery-2.0.3.min.js'    
+ 
+        '@MopaBootstrapBundle/Resources/public/bootstrap/js/tooltip.js'
+        '@MopaBootstrapBundle/Resources/public/bootstrap/js/affix.js'
+        '@MopaBootstrapBundle/Resources/public/bootstrap/js/alert.js'
+        '@MopaBootstrapBundle/Resources/public/bootstrap/js/button.js'
+        '@MopaBootstrapBundle/Resources/public/bootstrap/js/carousel.js'
+        '@MopaBootstrapBundle/Resources/public/bootstrap/js/collapse.js'
+        '@MopaBootstrapBundle/Resources/public/bootstrap/js/dropdown.js'
+        '@MopaBootstrapBundle/Resources/public/bootstrap/js/modal.js'
+        '@MopaBootstrapBundle/Resources/public/bootstrap/js/popover.js'
+        '@MopaBootstrapBundle/Resources/public/bootstrap/js/scrollspy.js'
+        '@MopaBootstrapBundle/Resources/public/bootstrap/js/tab.js'
+        '@MopaBootstrapBundle/Resources/public/bootstrap/js/transition.js'
+        '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
+        '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-subnav.js'
+
+        '@NasdTabBundle/Resources/public/js/lib/angular/angular.js'
+        '@NasdTabBundle/Resources/public/js/angular/ng-table.src.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        
+    {% endjavascripts %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+    {% endblock foot_script %}
+{% endblock body %}
+</body>
+</html>

@@ -1,63 +1,25 @@
 <h1>Tabellagenerale list</h1>
 
 <table ng-table="tableParams" show-filter="true" class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Inventarynumber</th>
-            <th>Slab</th>
-            <th>Subjecticonography</th>
-            <th>King</th>
-            <th>Site</th>
-            <th>Palace</th>
-            <th>Roomcourt</th>
-            <th>Wall</th>
-            <th>Inscription</th>
-            <th>Museumcollection</th>
-            <th>City</th>
-            <th>Images</th>
-            <th>Bibliography</th>
-            <th>Pathfile</th>
-            <th>Slug</th>
-            <th>Created</th>
-            <th>Updated</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for entity in entities %}
-        <tr>
-            <td><a href="{{ path('tabellagenerale_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.InventaryNumber }}</td>
-            <td>{{ entity.Slab }}</td>
-            <td>{{ entity.SubjectIconography }}</td>
-            <td>{{ entity.King }}</td>
-            <td>{{ entity.Site }}</td>
-            <td>{{ entity.Palace }}</td>
-            <td>{{ entity.RoomCourt }}</td>
-            <td>{{ entity.Wall }}</td>
-            <td>{{ entity.Inscription }}</td>
-            <td>{{ entity.MuseumCollection }}</td>
-            <td>{{ entity.City }}</td>
-            <td>{{ entity.Images }}</td>
-            <td>{{ entity.Bibliography }}</td>
-            <td>{{ entity.pathfile }}</td>
-            <td>{{ entity.slug }}</td>
-            <td>{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif%}</td>
-            <td>{% if entity.updated %}{{ entity.updated|date('Y-m-d H:i:s') }}{% endif%}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('tabellagenerale_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('tabellagenerale_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-    {% endfor %}
-    </tbody>
+    <tr ng-repeat="entity in entities">
+        <td data-title="'Id'" filter="{ 'name': 'text' }"><a href="{{ path('tabellagenerale_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+        <td data-title="'Inventarynumber'" filter="{ 'Inventarynumber': 'text' }">{{ entity.InventaryNumber }}</td>
+        <td data-title="'Slab'" filter="{ 'Slab': 'text' }">{{ entity.Slab }}</td>
+        <td data-title="'Subjecticonography'" filter="{ 'Subjecticonography': 'text' }">{{ entity.SubjectIconography }}</td>
+        <td data-title="'King'" filter="{ 'King': 'text' }">{{ entity.King }}</td>
+        <td data-title="'Site'" filter="{ 'Site': 'text' }">{{ entity.Site }}</td>
+        <td data-title="'Palace'" filter="{ 'Palace': 'text' }">{{ entity.Palace }}</td>
+        <td data-title="'Roomcourt'" filter="{ 'Roomcourt': 'text' }">{{ entity.RoomCourt }}</td>
+        <td data-title="'Wall'" filter="{ 'Wall': 'text' }">{{ entity.Wall }}</td>
+        <td data-title="'Inscription'" filter="{ 'Inscription': 'text' }">{{ entity.Inscription }}</td>
+        <td data-title="'Museumcollection'" filter="{ 'Museumcollection': 'text' }">{{ entity.MuseumCollection }}</td>
+        <td data-title="'City'" filter="{ 'City': 'text' }">{{ entity.City }}</td>
+        <td data-title="'Images'" filter="{ 'Images': 'text' }">{{ entity.Images }}</td>
+        <td data-title="'Bibliography'" filter="{ 'Bibliography': 'text' }">{{ entity.Bibliography }}</td>
+        <td data-title="'Pathfile'" filter="{ 'Pathfile': 'text' }">{{ entity.pathfile }}</td>
+        <td data-title="'Slug'" filter="{ 'Slug': 'text' }">{{ entity.slug }}</td>
+        <td data-title="'Created'" filter="{ 'Created': 'date' }">{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif%}</td>
+    </tr>
 </table>
 
 <ul>
@@ -67,3 +29,44 @@
         </a>
     </li>
 </ul>
+
+<script type="text/javascript">
+var app = angular.module('main', ['ngTable']).
+controller('NasdCtrl', function($scope, $filter, ngTableParams) {
+    var data = [{
+            
+    }];
+
+    $scope.entities = [];
+
+    $scope.loadEntity = function() {
+        var httpRequest = $http({
+            method: 'POST',
+            url: '/echo/json/'
+//            data: mockDataForThisTest
+        }).success(function(data, status) {
+            $scope.entities = data;
+        });
+
+    };
+    
+    $scope.tableParams = new ngTableParams({
+        page: 1,            // show first page
+        count: 10,          // count per page
+        sorting: {
+            Inventarynumber: 'asc'     // initial sorting
+        }
+    }, {
+        total: data.length, // length of data
+        getData: function($defer, params) {
+            $location.search(params.url()); // put params in url
+            var orderedData = params.filter() ?
+                   $filter('filter')(data, params.filter()) :
+                   data;
+            $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+            params.total(orderedData.length); // set total for recalc pagination
+            $defer.resolve($scope.entities);
+        }
+    });
+});
+</script>

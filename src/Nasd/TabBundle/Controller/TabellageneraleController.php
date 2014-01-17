@@ -52,8 +52,7 @@ class TabellageneraleController extends Controller
      *
      * @return Doctrine\Common\Persistence\AbstractManagerRegistry
      */
-    private function getTabellageneraleRepository()
-    {
+    private function getTabellageneraleRepository() {
         return $this
             ->doctrine
             ->getRepository('NasdTabBundle:Tabellagenerale');
@@ -64,9 +63,9 @@ class TabellageneraleController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      * @Rest\View(serializerGroups={"usList"})
+     * @Route("/", name="index")
      */
-    public function cgetAction()
-    {
+    public function cgetAction() {
         return $this
                 ->getTabellageneraleRepository()
                 ->findAll()
@@ -79,12 +78,11 @@ class TabellageneraleController extends Controller
      * @param  int  $id
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * 
      * @Rest\View(serializerGroups={"usDetail"})
      * @ParamConverter("id", class="NasdTabBundle:Tabellagenerale")
+     * @Route("/{id}/detail", name="element_detail")
      */
-    public function getAction(Tabellagenerale $id)
-    {
+    public function getAction(Tabellagenerale $id) {
         return $id;
     }
 
@@ -92,10 +90,11 @@ class TabellageneraleController extends Controller
      * Creates
      *
      * @return \Symfony\Component\HttpFoundation\Response
+     * @Secure(roles="ROLE_ADMIN")
+     * @Route("/new", name="element_new")
      * @ PreAuthorize("isFullyAuthenticated()")
      */
-    public function cpostAction()
-    {
+    public function cpostAction() {
         return $this->pForm(new Tabellagenerale());
     }
 
@@ -105,10 +104,11 @@ class TabellageneraleController extends Controller
      * @param  int   $tabellagenerale
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @Secure(roles="ROLE_ADMIN")
+     * @Route("/{id}/edit", name="element_edit")
      * @ PreAuthorize("isFullyAuthenticated()")
      */
-    public function putAction($id)
-    {
+    public function putAction($id) {
         $tabellagenerale = $this
             ->getTabellageneraleRepository()
             ->find($id)
@@ -127,10 +127,11 @@ class TabellageneraleController extends Controller
      * @param  int  $id
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @Secure(roles="ROLE_ADMIN")
+     * @Route("/{id}/delete", name="element_delete")
      * @ PreAuthorize("isFullyAuthenticated()")
      */
-    public function deleteAction($id)
-    {
+    public function deleteAction($id) {
         $tabellagenerale = $this
             ->getTabellageneraleRepository()
             ->find($id)
@@ -150,8 +151,7 @@ class TabellageneraleController extends Controller
      * @param Tabellagenerale $tabellagenerale
      * @return \Symfony\Component\HttpFoundation\Response|\FOS\RestBundle\View\View
      */
-    protected function pForm(Tabellagenerale $tabellagenerale)
-    {
+    protected function pForm(Tabellagenerale $tabellagenerale) {
         $statusCode = $tabellagenerale->getId() > 0 ? 204 : 201;
         $form = $this->formFactory->create(new TabellageneraleType(), $tabellagenerale);
         $form->bind($this->request);
@@ -172,6 +172,24 @@ class TabellageneraleController extends Controller
     }
     
     
+    /**
+     *
+     * @Route("/bibliography", name="bibliography")
+     * @Template()
+     */
+    public function bibliographyAction()
+    {
+        return array();
+    }
+    /**
+     *
+     * @Route("/about", name="about")
+     * @Template()
+     */
+    public function aboutAction()
+    {
+        return array();
+    }
 /**********************/    
 /* end new environment*/
 /**********************/
